@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Provider Dashboard – ServeHub</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<div class="dash-layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🔧</div>
+      <span class="logo-text">Serve<span>Hub</span></span>
+    </a>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">👨‍🔧</div>
+      <div class="sidebar-user-info">
+        <div class="user-name">Rajesh Kumar</div>
+        <div class="user-role">⚡ Electrician</div>
+      </div>
+    </div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">
+      <div class="nav-section-label">Provider Menu</div>
+      <button class="nav-item active" data-page="dashboard"><span class="nav-icon">🏠</span><span class="nav-label">Dashboard</span></button>
+      <button class="nav-item" data-page="requests"><span class="nav-icon">📬</span><span class="nav-label">Booking Requests</span><span class="nav-badge">4</span></button>
+      <button class="nav-item" data-page="active"><span class="nav-icon">🔨</span><span class="nav-label">Active Jobs</span></button>
+      <button class="nav-item" data-page="history"><span class="nav-icon">📋</span><span class="nav-label">Job History</span></button>
+      <button class="nav-item" data-page="earnings"><span class="nav-icon">💰</span><span class="nav-label">Earnings</span></button>
+      <button class="nav-item" data-page="schedule"><span class="nav-icon">📅</span><span class="nav-label">Schedule</span></button>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Account</div>
+      <button class="nav-item" data-page="profile"><span class="nav-icon">👤</span><span class="nav-label">My Profile</span></button>
+      <button class="nav-item" data-page="documents"><span class="nav-icon">📄</span><span class="nav-label">Documents</span></button>
+      <button class="nav-item" data-page="notifications"><span class="nav-icon">🔔</span><span class="nav-label">Notifications</span><span class="nav-badge">3</span></button>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="index.html" class="btn btn-outline-white btn-sm btn-full">← Back to Home</a>
+  </div>
+</aside>
+<div class="dash-overlay" id="dash-overlay"></div>
+
+<main class="dash-main">
+  <div class="dash-topbar">
+    <div style="display:flex; align-items:center; gap:16px">
+      <button class="topbar-icon-btn" id="mobile-ham" style="display:none">☰</button>
+      <div class="topbar-title" id="topbar-title">Dashboard</div>
+    </div>
+    <div class="topbar-actions">
+      <!-- Availability Toggle -->
+      <div style="display:flex;align-items:center;gap:8px;background:var(--white);border:1.5px solid var(--light-gray);border-radius:99px;padding:6px 14px">
+        <span style="font-size:0.85rem;font-weight:600;color:var(--mid-gray)">Available</span>
+        <label style="position:relative;display:inline-block;width:40px;height:22px;cursor:pointer">
+          <input type="checkbox" id="availability-toggle" checked style="opacity:0;width:0;height:0">
+          <span style="position:absolute;inset:0;background:var(--success);border-radius:99px;transition:0.3s;"></span>
+          <span style="position:absolute;top:3px;left:3px;width:16px;height:16px;background:white;border-radius:50%;transition:0.3s;transform:translateX(18px)"></span>
+        </label>
+      </div>
+      <button class="topbar-icon-btn">🔔<span class="notif-dot"></span></button>
+      <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--primary));display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;">👨‍🔧</div>
+    </div>
+  </div>
+
+  <div class="dash-content">
+
+    <!-- DASHBOARD -->
+    <div class="page-section active" id="page-dashboard">
+      <div style="margin-bottom:24px">
+        <h3>Welcome back, Rajesh! 👋</h3>
+        <p class="text-muted">You have <strong style="color:var(--accent)">4 new booking requests</strong> waiting for your response.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-icon">📅</span>
+          <div class="stat-val">234</div>
+          <div class="stat-desc">Total Jobs Done</div>
+          <div class="stat-change up">↑ 12 this month</div>
+        </div>
+        <div class="stat-card teal">
+          <span class="stat-icon">⭐</span>
+          <div class="stat-val">4.9</div>
+          <div class="stat-desc">Average Rating</div>
+          <div class="stat-change up">↑ 0.1 this month</div>
+        </div>
+        <div class="stat-card gold">
+          <span class="stat-icon">💰</span>
+          <div class="stat-val">₹28,450</div>
+          <div class="stat-desc">Total Earnings</div>
+          <div class="stat-change up">↑ ₹3,200 this month</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">📬</span>
+          <div class="stat-val">4</div>
+          <div class="stat-desc">Pending Requests</div>
+          <div class="stat-change up">Respond within 24h</div>
+        </div>
+      </div>
+
+      <!-- Earnings Chart -->
+      <div class="table-card mb-24">
+        <div class="table-header">
+          <div class="table-title">Monthly Earnings</div>
+          <span style="color:var(--mid-gray);font-size:0.85rem">Last 6 months</span>
+        </div>
+        <div class="chart-container">
+          <div class="chart-bars">
+            <div class="chart-bar-group"><div class="chart-bar primary" data-height="60%" style="height:0"></div><span class="chart-label">Nov</span></div>
+            <div class="chart-bar-group"><div class="chart-bar primary" data-height="75%" style="height:0"></div><span class="chart-label">Dec</span></div>
+            <div class="chart-bar-group"><div class="chart-bar primary" data-height="55%" style="height:0"></div><span class="chart-label">Jan</span></div>
+            <div class="chart-bar-group"><div class="chart-bar primary" data-height="90%" style="height:0"></div><span class="chart-label">Feb</span></div>
+            <div class="chart-bar-group"><div class="chart-bar primary" data-height="80%" style="height:0"></div><span class="chart-label">Mar</span></div>
+            <div class="chart-bar-group"><div class="chart-bar primary" data-height="100%" style="height:0"></div><span class="chart-label">Apr</span></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:12px;padding:0 4px;color:var(--mid-gray);font-size:0.8rem">
+            <span>₹0</span><span>₹2k</span><span>₹4k</span><span>₹6k</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Requests Preview -->
+      <div class="table-card">
+        <div class="table-header">
+          <div class="table-title">Pending Requests</div>
+          <button class="btn btn-primary btn-sm" onclick="document.querySelector('[data-page=requests]').click()">View All</button>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>Customer</th><th>Service</th><th>Date</th><th>Amount</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Ananya Singh</td>
+              <td>⚡ Electrical Repair</td>
+              <td>Apr 25, 10:00 AM</td>
+              <td>₹450</td>
+              <td>
+                <button class="btn btn-sm btn-teal" data-booking-action="accept">Accept</button>
+                <button class="btn btn-sm" style="background:rgba(229,57,53,0.1);color:var(--danger);border-radius:99px;padding:6px 14px;font-size:0.82rem;cursor:pointer;margin-left:6px" data-booking-action="reject">Reject</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Vikram Patel</td>
+              <td>⚡ Wiring Installation</td>
+              <td>Apr 26, 2:00 PM</td>
+              <td>₹800</td>
+              <td>
+                <button class="btn btn-sm btn-teal" data-booking-action="accept">Accept</button>
+                <button class="btn btn-sm" style="background:rgba(229,57,53,0.1);color:var(--danger);border-radius:99px;padding:6px 14px;font-size:0.82rem;cursor:pointer;margin-left:6px" data-booking-action="reject">Reject</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- BOOKING REQUESTS -->
+    <div class="page-section" id="page-requests">
+      <h3 style="margin-bottom:8px">Booking Requests</h3>
+      <p class="text-muted mb-24">Review and respond to incoming service requests.</p>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="table-card" style="padding:20px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px">
+            <div>
+              <div style="font-weight:600;font-size:1rem;margin-bottom:4px">⚡ Electrical Repair</div>
+              <div style="color:var(--mid-gray);font-size:0.85rem">📅 Apr 25, 10:00 AM &nbsp; 📍 Saheed Nagar, Bhubaneswar</div>
+              <div style="color:var(--mid-gray);font-size:0.85rem;margin-top:4px">👤 Ananya Singh &nbsp; 💰 ₹450 &nbsp; ⏱️ ~2 hours</div>
+              <div style="background:var(--light-gray);padding:10px;border-radius:8px;margin-top:10px;font-size:0.85rem;max-width:400px">
+                "Two switches not working and light flickering in bedroom. Need urgent fix."
+              </div>
+            </div>
+            <div style="display:flex;gap:10px">
+              <button class="btn btn-teal" data-booking-action="accept">✓ Accept</button>
+              <button class="btn" style="background:rgba(229,57,53,0.1);color:var(--danger);border:1.5px solid rgba(229,57,53,0.2);border-radius:99px;padding:12px 24px;font-size:0.95rem;cursor:pointer;" data-booking-action="reject">✕ Reject</button>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap">
+            <span class="status-badge status-pending">⏳ Awaiting Response</span>
+            <span style="background:rgba(255,179,0,0.1);color:var(--warning);padding:4px 12px;border-radius:99px;font-size:0.75rem;font-weight:600">⚡ Respond within 2h</span>
+          </div>
+        </div>
+        <div class="table-card" style="padding:20px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px">
+            <div>
+              <div style="font-weight:600;font-size:1rem;margin-bottom:4px">⚡ Wiring Installation</div>
+              <div style="color:var(--mid-gray);font-size:0.85rem">📅 Apr 26, 2:00 PM &nbsp; 📍 Patia, Bhubaneswar</div>
+              <div style="color:var(--mid-gray);font-size:0.85rem;margin-top:4px">👤 Vikram Patel &nbsp; 💰 ₹800 &nbsp; ⏱️ ~4 hours</div>
+              <div style="background:var(--light-gray);padding:10px;border-radius:8px;margin-top:10px;font-size:0.85rem;max-width:400px">
+                "New flat, need full wiring done for 2BHK. Bring all materials."
+              </div>
+            </div>
+            <div style="display:flex;gap:10px">
+              <button class="btn btn-teal" data-booking-action="accept">✓ Accept</button>
+              <button class="btn" style="background:rgba(229,57,53,0.1);color:var(--danger);border:1.5px solid rgba(229,57,53,0.2);border-radius:99px;padding:12px 24px;font-size:0.95rem;cursor:pointer;" data-booking-action="reject">✕ Reject</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIVE JOBS -->
+    <div class="page-section" id="page-active">
+      <h3 style="margin-bottom:8px">Active Jobs</h3>
+      <p class="text-muted mb-24">Jobs you're currently working on.</p>
+      <div class="table-card" style="padding:20px;margin-bottom:16px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+          <div>
+            <div style="font-weight:600;font-size:1.05rem;margin-bottom:6px">🔧 Plumbing Fix – Sunil Das Booking</div>
+            <div style="color:var(--mid-gray);font-size:0.85rem;margin-bottom:8px">📅 Apr 22, 2:00 PM &nbsp; 📍 45 Saheed Nagar &nbsp; ₹320</div>
+            <span class="status-badge status-pending">In Progress</span>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn-primary" data-booking-action="complete">✓ Mark Complete</button>
+            <button class="btn btn-teal">💬 Message</button>
+          </div>
+        </div>
+        <div style="margin-top:16px;background:var(--light-gray);border-radius:8px;overflow:hidden">
+          <div style="height:8px;background:linear-gradient(90deg,var(--teal),var(--accent));width:65%;border-radius:8px"></div>
+        </div>
+        <div style="font-size:0.8rem;color:var(--mid-gray);margin-top:4px">Service completion: 65%</div>
+      </div>
+    </div>
+
+    <!-- JOB HISTORY -->
+    <div class="page-section" id="page-history">
+      <h3 style="margin-bottom:8px">Job History</h3>
+      <p class="text-muted mb-24">All your completed service records.</p>
+      <div class="table-card">
+        <table class="data-table">
+          <thead><tr><th>Booking ID</th><th>Customer</th><th>Service</th><th>Date</th><th>Earned</th><th>Rating</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>#SH-0420</td><td>Kavita Rao</td><td>⚡ Fan Installation</td><td>Apr 20</td><td>₹380</td><td>⭐ 5.0</td><td><span class="status-badge status-active">Completed</span></td></tr>
+            <tr><td>#SH-0418</td><td>Mohit Gupta</td><td>⚡ Board Repair</td><td>Apr 18</td><td>₹550</td><td>⭐ 4.8</td><td><span class="status-badge status-active">Completed</span></td></tr>
+            <tr><td>#SH-0414</td><td>Priya Nair</td><td>⚡ AC Wiring</td><td>Apr 14</td><td>₹720</td><td>⭐ 5.0</td><td><span class="status-badge status-active">Completed</span></td></tr>
+            <tr><td>#SH-0410</td><td>Ravi Shankar</td><td>⚡ Meter Fix</td><td>Apr 10</td><td>₹290</td><td>⭐ 4.5</td><td><span class="status-badge status-active">Completed</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- EARNINGS -->
+    <div class="page-section" id="page-earnings">
+      <h3 style="margin-bottom:8px">Earnings Dashboard</h3>
+      <p class="text-muted mb-24">Track your income and withdrawals.</p>
+      <div class="stats-grid mb-24">
+        <div class="stat-card gold"><span class="stat-icon">💰</span><div class="stat-val">₹3,200</div><div class="stat-desc">This Month</div></div>
+        <div class="stat-card"><span class="stat-icon">🏦</span><div class="stat-val">₹28,450</div><div class="stat-desc">Total Earned</div></div>
+        <div class="stat-card teal"><span class="stat-icon">✅</span><div class="stat-val">₹2,890</div><div class="stat-desc">Available to Withdraw</div></div>
+        <div class="stat-card"><span class="stat-icon">⏳</span><div class="stat-val">₹310</div><div class="stat-desc">Pending Release</div></div>
+      </div>
+      <div class="table-card" style="padding:24px;margin-bottom:16px">
+        <h4 style="margin-bottom:16px">Withdraw Earnings</h4>
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <input class="form-control" type="number" placeholder="Enter amount" style="max-width:200px" />
+          <select class="form-control" style="max-width:200px"><option>Bank Account (SBI ••3421)</option><option>UPI (rajesh@upi)</option></select>
+          <button class="btn btn-primary" onclick="showToast('Withdrawal initiated! Arrives in 1-2 business days.','success')">Withdraw Now</button>
+        </div>
+        <div style="margin-top:12px;font-size:0.85rem;color:var(--mid-gray)">💡 Weekly payouts every Monday. Minimum withdrawal: ₹100</div>
+      </div>
+    </div>
+
+    <!-- SCHEDULE -->
+    <div class="page-section" id="page-schedule">
+      <h3 style="margin-bottom:8px">My Schedule</h3>
+      <p class="text-muted mb-24">Manage your availability and working hours.</p>
+      <div class="table-card" style="padding:24px">
+        <h4 style="margin-bottom:16px">Working Hours</h4>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+            <strong>Monday – Friday</strong>
+            <div style="display:flex;gap:8px;align-items:center">
+              <input type="time" class="form-control" value="09:00" style="width:130px" />
+              <span>to</span>
+              <input type="time" class="form-control" value="18:00" style="width:130px" />
+              <label style="cursor:pointer;display:flex;align-items:center;gap:6px"><input type="checkbox" checked /> Available</label>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+            <strong>Saturday</strong>
+            <div style="display:flex;gap:8px;align-items:center">
+              <input type="time" class="form-control" value="10:00" style="width:130px" />
+              <span>to</span>
+              <input type="time" class="form-control" value="15:00" style="width:130px" />
+              <label style="cursor:pointer;display:flex;align-items:center;gap:6px"><input type="checkbox" checked /> Available</label>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+            <strong>Sunday</strong>
+            <div style="display:flex;gap:8px;align-items:center">
+              <input type="time" class="form-control" value="00:00" style="width:130px" disabled />
+              <span>to</span>
+              <input type="time" class="form-control" value="00:00" style="width:130px" disabled />
+              <label style="cursor:pointer;display:flex;align-items:center;gap:6px"><input type="checkbox" /> Available</label>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary mt-16" onclick="showToast('Schedule updated!','success')">Save Schedule</button>
+      </div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="page-section" id="page-profile">
+      <h3 style="margin-bottom:8px">Provider Profile</h3>
+      <p class="text-muted mb-24">Your public-facing profile visible to customers.</p>
+      <div class="profile-card mb-24">
+        <div class="profile-banner" style="background:linear-gradient(135deg,var(--teal),var(--primary))"></div>
+        <div class="profile-body">
+          <div class="profile-pic">👨‍🔧</div>
+          <div class="profile-name">Rajesh Kumar</div>
+          <div class="profile-email">rajesh.kumar@email.com · +91 91234 56789</div>
+          <div class="verified-badge" style="margin-top:8px">✓ KYC Verified</div>
+          <div style="display:flex;gap:24px;margin-top:16px">
+            <div><div style="font-weight:700;font-size:1.1rem">4.9⭐</div><div style="color:var(--mid-gray);font-size:0.8rem">Rating</div></div>
+            <div><div style="font-weight:700;font-size:1.1rem">234</div><div style="color:var(--mid-gray);font-size:0.8rem">Jobs</div></div>
+            <div><div style="font-weight:700;font-size:1.1rem">5 yrs</div><div style="color:var(--mid-gray);font-size:0.8rem">Experience</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="table-card" style="padding:28px">
+        <form id="profile-form">
+          <div class="grid-2">
+            <div class="form-group"><label class="form-label">Full Name</label><input class="form-control" type="text" value="Rajesh Kumar" /></div>
+            <div class="form-group"><label class="form-label">Service Category</label><select class="form-control"><option selected>Electrical Work</option><option>Plumbing</option><option>Construction</option></select></div>
+            <div class="form-group"><label class="form-label">Hourly Rate (₹)</label><input class="form-control" type="number" value="299" /></div>
+            <div class="form-group"><label class="form-label">Experience (Years)</label><input class="form-control" type="number" value="5" /></div>
+          </div>
+          <div class="form-group"><label class="form-label">Bio / Description</label>
+            <textarea class="form-control" rows="3">Certified electrician with 5+ years experience. Specializing in residential repairs, wiring, and safety inspections. Available 24/7 for emergencies.</textarea></div>
+          <button type="submit" class="btn btn-primary">Update Profile</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- DOCUMENTS -->
+    <div class="page-section" id="page-documents">
+      <h3 style="margin-bottom:8px">KYC Documents</h3>
+      <p class="text-muted mb-24">Verification documents for your account.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px">
+        <div class="table-card" style="padding:20px">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+            <div style="font-size:2rem">🪪</div>
+            <div><div style="font-weight:600">Aadhaar Card</div><div style="font-size:0.8rem;color:var(--mid-gray)">Identity Verification</div></div>
+          </div>
+          <span class="status-badge status-active">✓ Verified</span>
+          <div style="font-size:0.8rem;color:var(--mid-gray);margin-top:8px">Uploaded: Jan 15, 2026</div>
+        </div>
+        <div class="table-card" style="padding:20px">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+            <div style="font-size:2rem">📄</div>
+            <div><div style="font-weight:600">PAN Card</div><div style="font-size:0.8rem;color:var(--mid-gray)">Tax Verification</div></div>
+          </div>
+          <span class="status-badge status-active">✓ Verified</span>
+          <div style="font-size:0.8rem;color:var(--mid-gray);margin-top:8px">Uploaded: Jan 15, 2026</div>
+        </div>
+        <div class="table-card" style="padding:20px">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+            <div style="font-size:2rem">🎓</div>
+            <div><div style="font-weight:600">Professional Certificate</div><div style="font-size:0.8rem;color:var(--mid-gray)">ITI Electrician Cert</div></div>
+          </div>
+          <span class="status-badge status-active">✓ Verified</span>
+          <div style="font-size:0.8rem;color:var(--mid-gray);margin-top:8px">Uploaded: Jan 16, 2026</div>
+        </div>
+        <div class="table-card" style="padding:20px;border:2px dashed var(--light-gray)">
+          <div style="text-align:center;padding:20px 0">
+            <div style="font-size:2.5rem;margin-bottom:8px">➕</div>
+            <div style="font-weight:600;margin-bottom:4px">Upload New Document</div>
+            <div style="font-size:0.85rem;color:var(--mid-gray);margin-bottom:16px">JPG, PNG or PDF · Max 5MB</div>
+            <button class="btn btn-primary btn-sm" onclick="showToast('Document upload feature coming soon','info')">Upload</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTIFICATIONS -->
+    <div class="page-section" id="page-notifications">
+      <h3 style="margin-bottom:8px">Notifications</h3>
+      <p class="text-muted mb-24">Stay updated with bookings and platform news.</p>
+      <div class="table-card" style="padding:20px 24px">
+        <div class="notif-item">
+          <div class="notif-dot2"></div>
+          <div class="notif-content"><div class="notif-title">New Booking Request 📬</div><div class="notif-desc">Ananya Singh has requested Electrical Repair on Apr 25. Respond within 2 hours.</div></div>
+          <div class="notif-time">10 min ago</div>
+        </div>
+        <div class="notif-item">
+          <div class="notif-dot2"></div>
+          <div class="notif-content"><div class="notif-title">Payment Received 💰</div><div class="notif-desc">₹380 has been credited for Fan Installation job. Available for withdrawal.</div></div>
+          <div class="notif-time">2 days ago</div>
+        </div>
+        <div class="notif-item">
+          <div class="notif-dot2 read"></div>
+          <div class="notif-content"><div class="notif-title">New 5-Star Review ⭐</div><div class="notif-desc">Kavita Rao left you a 5-star review: "Excellent work! Very professional."</div></div>
+          <div class="notif-time">3 days ago</div>
+        </div>
+        <div class="notif-item">
+          <div class="notif-dot2 read"></div>
+          <div class="notif-content"><div class="notif-title">Account Verified ✅</div><div class="notif-desc">Your KYC verification is complete. You can now accept bookings on ServeHub.</div></div>
+          <div class="notif-time">1 month ago</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/dashboard.js"></script>
+<script>
+  if (window.innerWidth <= 900) document.getElementById('mobile-ham').style.display = 'flex';
+  window.addEventListener('resize', () => {
+    const ham = document.getElementById('mobile-ham');
+    if (ham) ham.style.display = window.innerWidth <= 900 ? 'flex' : 'none';
+  });
+</script>
+</body>
+</html>

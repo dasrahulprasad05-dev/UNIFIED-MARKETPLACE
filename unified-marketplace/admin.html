@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel – ServeHub</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<div class="dash-layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🔧</div>
+      <span class="logo-text">Serve<span>Hub</span></span>
+    </a>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">🛡️</div>
+      <div class="sidebar-user-info">
+        <div class="user-name">Admin Panel</div>
+        <div class="user-role">System Administrator</div>
+      </div>
+    </div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">
+      <div class="nav-section-label">Overview</div>
+      <button class="nav-item active" data-page="dashboard"><span class="nav-icon">🏠</span><span class="nav-label">Dashboard</span></button>
+      <button class="nav-item" data-page="analytics"><span class="nav-icon">📊</span><span class="nav-label">Analytics</span></button>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Management</div>
+      <button class="nav-item" data-page="customers"><span class="nav-icon">👥</span><span class="nav-label">Customers</span></button>
+      <button class="nav-item" data-page="providers"><span class="nav-icon">🔨</span><span class="nav-label">Service Providers</span></button>
+      <button class="nav-item" data-page="verification"><span class="nav-icon">✅</span><span class="nav-label">KYC Verification</span><span class="nav-badge">7</span></button>
+      <button class="nav-item" data-page="bookings"><span class="nav-icon">📅</span><span class="nav-label">All Bookings</span></button>
+      <button class="nav-item" data-page="transactions"><span class="nav-icon">💳</span><span class="nav-label">Transactions</span></button>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Support</div>
+      <button class="nav-item" data-page="disputes"><span class="nav-icon">⚠️</span><span class="nav-label">Disputes</span><span class="nav-badge">3</span></button>
+      <button class="nav-item" data-page="reports"><span class="nav-icon">📈</span><span class="nav-label">Reports</span></button>
+      <button class="nav-item" data-page="settings"><span class="nav-icon">⚙️</span><span class="nav-label">Settings</span></button>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="index.html" class="btn btn-outline-white btn-sm btn-full">← Back to Home</a>
+  </div>
+</aside>
+<div class="dash-overlay" id="dash-overlay"></div>
+
+<main class="dash-main">
+  <div class="dash-topbar">
+    <div style="display:flex;align-items:center;gap:16px">
+      <button class="topbar-icon-btn" id="mobile-ham" style="display:none">☰</button>
+      <div class="topbar-title" id="topbar-title">Admin Dashboard</div>
+    </div>
+    <div class="topbar-actions">
+      <button class="topbar-icon-btn" title="Notifications">🔔<span class="notif-dot"></span></button>
+      <div style="display:flex;align-items:center;gap:8px;background:var(--white);border:1.5px solid var(--light-gray);border-radius:99px;padding:6px 14px;font-size:0.85rem;font-weight:600;cursor:pointer">
+        <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--gold));display:flex;align-items:center;justify-content:center;font-size:0.9rem">🛡️</div>
+        Admin
+      </div>
+    </div>
+  </div>
+
+  <div class="dash-content">
+
+    <!-- DASHBOARD -->
+    <div class="page-section active" id="page-dashboard">
+      <div style="margin-bottom:24px">
+        <h3>Platform Overview 🛡️</h3>
+        <p class="text-muted">Real-time statistics and platform health monitor.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-icon">👥</span>
+          <div class="stat-val" data-count="48320">0</div>
+          <div class="stat-desc">Total Customers</div>
+          <div class="stat-change up">↑ 1,240 this month</div>
+        </div>
+        <div class="stat-card teal">
+          <span class="stat-icon">🔨</span>
+          <div class="stat-val" data-count="12089">0</div>
+          <div class="stat-desc">Service Providers</div>
+          <div class="stat-change up">↑ 340 this month</div>
+        </div>
+        <div class="stat-card gold">
+          <span class="stat-icon">💰</span>
+          <div class="stat-val">₹12.4L</div>
+          <div class="stat-desc">Monthly Revenue</div>
+          <div class="stat-change up">↑ 18% vs last month</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">📅</span>
+          <div class="stat-val" data-count="95420">0</div>
+          <div class="stat-desc">Total Bookings</div>
+          <div class="stat-change up">↑ 8,200 this month</div>
+        </div>
+      </div>
+
+      <!-- Platform Health -->
+      <div class="grid-2 mb-24">
+        <div class="table-card" style="padding:24px">
+          <h4 style="margin-bottom:20px">Platform Health</h4>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:0.85rem;font-weight:600">System Uptime</span><span style="color:var(--success);font-weight:700;font-size:0.85rem">99.8%</span></div>
+              <div style="background:var(--light-gray);border-radius:99px;height:8px"><div style="width:99.8%;height:100%;background:var(--success);border-radius:99px"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:0.85rem;font-weight:600">API Response Time</span><span style="color:var(--teal);font-weight:700;font-size:0.85rem">0.8s avg</span></div>
+              <div style="background:var(--light-gray);border-radius:99px;height:8px"><div style="width:80%;height:100%;background:var(--teal);border-radius:99px"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:0.85rem;font-weight:600">Payment Success Rate</span><span style="color:var(--accent);font-weight:700;font-size:0.85rem">97.2%</span></div>
+              <div style="background:var(--light-gray);border-radius:99px;height:8px"><div style="width:97.2%;height:100%;background:var(--accent);border-radius:99px"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:0.85rem;font-weight:600">Booking Completion Rate</span><span style="color:var(--gold);font-weight:700;font-size:0.85rem">91.5%</span></div>
+              <div style="background:var(--light-gray);border-radius:99px;height:8px"><div style="width:91.5%;height:100%;background:var(--gold);border-radius:99px"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="table-card" style="padding:24px">
+          <h4 style="margin-bottom:20px">Pending Actions</h4>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(255,179,0,0.08);border-radius:8px;border-left:4px solid var(--warning)">
+              <span style="font-size:0.9rem;font-weight:600">KYC Verifications</span>
+              <span style="background:var(--warning);color:white;padding:2px 10px;border-radius:99px;font-size:0.78rem;font-weight:700">7 Pending</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(229,57,53,0.06);border-radius:8px;border-left:4px solid var(--danger)">
+              <span style="font-size:0.9rem;font-weight:600">Open Disputes</span>
+              <span style="background:var(--danger);color:white;padding:2px 10px;border-radius:99px;font-size:0.78rem;font-weight:700">3 Open</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(0,194,178,0.08);border-radius:8px;border-left:4px solid var(--teal)">
+              <span style="font-size:0.9rem;font-weight:600">Weekly Payouts</span>
+              <span style="background:var(--teal);color:white;padding:2px 10px;border-radius:99px;font-size:0.78rem;font-weight:700">Due Monday</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(10,37,64,0.05);border-radius:8px;border-left:4px solid var(--primary)">
+              <span style="font-size:0.9rem;font-weight:600">Flagged Content</span>
+              <span style="background:var(--primary);color:white;padding:2px 10px;border-radius:99px;font-size:0.78rem;font-weight:700">2 Reports</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="table-card">
+        <div class="table-header"><div class="table-title">Recent Registrations</div><button class="btn btn-sm" style="background:var(--light-gray);color:var(--dark-gray);border-radius:99px;padding:8px 18px;cursor:pointer;" data-export>⬇ Export</button></div>
+        <table class="data-table">
+          <thead><tr><th>User</th><th>Type</th><th>Email</th><th>Joined</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td>Priya Nair</td><td><span style="background:rgba(0,194,178,0.1);color:var(--teal);padding:2px 8px;border-radius:99px;font-size:0.78rem">Customer</span></td><td>priya@email.com</td><td>Apr 22</td><td><span class="status-badge status-active">Active</span></td><td><button class="btn btn-sm" style="background:var(--light-gray);color:var(--dark-gray);border-radius:99px;padding:6px 14px;font-size:0.82rem;cursor:pointer;" data-booking-action="suspend">Suspend</button></td></tr>
+            <tr><td>Deepak Verma</td><td><span style="background:rgba(255,107,53,0.1);color:var(--accent);padding:2px 8px;border-radius:99px;font-size:0.78rem">Provider</span></td><td>deepak@email.com</td><td>Apr 21</td><td><span class="status-badge status-pending">Pending KYC</span></td><td><button class="btn btn-sm btn-teal" onclick="document.querySelector('[data-page=verification]').click()">Verify</button></td></tr>
+            <tr><td>Sita Devi</td><td><span style="background:rgba(0,194,178,0.1);color:var(--teal);padding:2px 8px;border-radius:99px;font-size:0.78rem">Customer</span></td><td>sita@email.com</td><td>Apr 20</td><td><span class="status-badge status-active">Active</span></td><td><button class="btn btn-sm" style="background:var(--light-gray);color:var(--dark-gray);border-radius:99px;padding:6px 14px;font-size:0.82rem;cursor:pointer;" data-booking-action="suspend">Suspend</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ANALYTICS -->
+    <div class="page-section" id="page-analytics">
+      <h3 style="margin-bottom:8px">Platform Analytics</h3>
+      <p class="text-muted mb-24">Comprehensive data insights for the platform.</p>
+      <div class="stats-grid mb-24">
+        <div class="stat-card"><span class="stat-icon">📈</span><div class="stat-val">18%</div><div class="stat-desc">Monthly Growth</div></div>
+        <div class="stat-card teal"><span class="stat-icon">⭐</span><div class="stat-val">4.7</div><div class="stat-desc">Avg Platform Rating</div></div>
+        <div class="stat-card gold"><span class="stat-icon">🔄</span><div class="stat-val">68%</div><div class="stat-desc">Repeat Customer Rate</div></div>
+        <div class="stat-card"><span class="stat-icon">⚡</span><div class="stat-val">23 min</div><div class="stat-desc">Avg Response Time</div></div>
+      </div>
+      <div class="table-card">
+        <div class="table-header"><div class="table-title">Services by Category (This Month)</div></div>
+        <div class="chart-container">
+          <div style="display:flex;flex-direction:column;gap:10px;padding:0 8px">
+            <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:0.85rem;font-weight:600">⚡ Electrical</span><span style="font-size:0.85rem;color:var(--mid-gray)">2,840 bookings</span></div><div style="background:var(--light-gray);border-radius:99px;height:12px"><div style="width:85%;height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));border-radius:99px;transition:width 1s"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:0.85rem;font-weight:600">🔧 Plumbing</span><span style="font-size:0.85rem;color:var(--mid-gray)">1,920 bookings</span></div><div style="background:var(--light-gray);border-radius:99px;height:12px"><div style="width:60%;height:100%;background:linear-gradient(90deg,var(--teal),#00e5d2);border-radius:99px"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:0.85rem;font-weight:600">🧹 Cleaning</span><span style="font-size:0.85rem;color:var(--mid-gray)">2,100 bookings</span></div><div style="background:var(--light-gray);border-radius:99px;height:12px"><div style="width:70%;height:100%;background:linear-gradient(90deg,#6C63FF,#a29bfe);border-radius:99px"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:0.85rem;font-weight:600">🏥 Medical</span><span style="font-size:0.85rem;color:var(--mid-gray)">980 bookings</span></div><div style="background:var(--light-gray);border-radius:99px;height:12px"><div style="width:32%;height:100%;background:linear-gradient(90deg,#00b894,#00cec9);border-radius:99px"></div></div></div>
+            <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:0.85rem;font-weight:600">⚖️ Legal</span><span style="font-size:0.85rem;color:var(--mid-gray)">340 bookings</span></div><div style="background:var(--light-gray);border-radius:99px;height:12px"><div style="width:15%;height:100%;background:linear-gradient(90deg,var(--primary),#1a3a5c);border-radius:99px"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUSTOMERS -->
+    <div class="page-section" id="page-customers">
+      <h3 style="margin-bottom:8px">Customer Management</h3>
+      <p class="text-muted mb-24">View and manage all customer accounts.</p>
+      <div class="filter-bar">
+        <button class="filter-chip active">All Customers</button>
+        <button class="filter-chip">Active</button>
+        <button class="filter-chip">Inactive</button>
+        <button class="filter-chip">Suspended</button>
+      </div>
+      <div class="table-card">
+        <div class="table-header"><div class="table-title">All Customers</div><button class="btn btn-sm" style="background:var(--light-gray);color:var(--dark-gray);border-radius:99px;padding:8px 18px;cursor:pointer;" data-export>⬇ Export CSV</button></div>
+        <table class="data-table">
+          <thead><tr><th>Name</th><th>Email</th><th>Mobile</th><th>City</th><th>Bookings</th><th>Total Spent</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td>Ananya Singh</td><td>ananya@email.com</td><td>+91 98000 11111</td><td>Bhubaneswar</td><td>18</td><td>₹7,420</td><td><span class="status-badge status-active">Active</span></td><td><button class="btn btn-sm" style="background:rgba(229,57,53,0.1);color:var(--danger);border-radius:99px;padding:6px 14px;font-size:0.82rem;cursor:pointer;" data-booking-action="suspend">Suspend</button></td></tr>
+            <tr><td>Rahul Sharma</td><td>rahul@email.com</td><td>+91 98765 43210</td><td>Bhubaneswar</td><td>12</td><td>₹4,820</td><td><span class="status-badge status-active">Active</span></td><td><button class="btn btn-sm" style="background:rgba(229,57,53,0.1);color:var(--danger);border-radius:99px;padding:6px 14px;font-size:0.82rem;cursor:pointer;" data-booking-action="suspend">Suspend</button></td></tr>
+            <tr><td>Kavita Rao</td><td>kavita@email.com</td><td>+91 97000 22222</td><td>Puri</td><td>7</td><td>₹2,100</td><td><span class="status-badge status-active">Active</span></td><td><button class="btn btn-sm" style="background:rgba(229,57,53,0.1);color:var(--danger);border-radius:99px;padding:6px 14px;font-size:0.82rem;cursor:pointer;" data-booking-action="suspend">Suspend</button></td></tr>
+            <tr><td>Vikram Patel</td><td>vikram@email.com</td><td>+91 96000 33333</td><td>Cuttack</td><td>4</td><td>₹1,560</td><td><span class="status-badge status-pending">Inactive</span></td><td><button class="btn btn-sm" style="background:rgba(229,57,53,0.1);color:var(--danger);border-radius:99px;padding:6px 14px;font-size:0.82rem;cursor:pointer;" data-booking-action="suspend">Suspend</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PROVIDERS -->
+    <div class="page-section" id="page-providers">
+      <h3 style="margin-bottom:8px">Service Provider Management</h3>
+      <p class="text-muted mb-24">Manage all service providers on the platform.</p>
+      <div class="table-card">
+        <div class="table-header"><div class="table-title">All Service Providers</div><button class="btn btn-sm" style="background:var(--light-gray);color:var(--dark-gray);border-radius:99px;padding:8px 18px;cursor:pointer;" data-export>⬇ Export</button></div>
+        <table class="data-table">
+          <thead><tr><th>Name</th><th>Category</th><th>City</th><th>Rating</th><th>Jobs</th><th>Earnings</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr><td>Rajesh Kumar</td><td>⚡ Electrical</td><td>Bhubaneswar</td><td>⭐ 4.9</td><td>234</td><td>₹28,450</td><td><span class="status-badge status-active">Verified</span></td><td><button class="btn btn-sm" style="background:rgba(229,57,53,0.1);color:var(--danger);border-radius:99px;padding:6px 14px;font-size:0.82rem;cursor:pointer;" data-booking-action="suspend">Suspend</button></td></tr>
+            <tr><td>Dr. Priya Sharma</td><td>🏥 Medical</td><td>Bhubaneswar</td><td>⭐ 4.8</td><td>189</td><td>₹94,500</td><td><span class="status-badge status-active">Verified</span></td><td><button class="btn btn-sm" style="background:rgba(229,57,53,0.1);color:var(--danger);border-radius:99px;padding:6px 14px;font-size:0.82rem;cursor:pointer;" data-booking-action="suspend">Suspend</button></td></tr>
+            <tr><td>Sunil Das</td><td>🔧 Plumbing</td><td>Cuttack</td><td>⭐ 4.6</td><td>98</td><td>₹18,200</td><td><span class="status-badge status-active">Verified</span></td><td><button class="btn btn-sm" style="background:rgba(229,57,53,0.1);color:var(--danger);border-radius:99px;padding:6px 14px;font-size:0.82rem;cursor:pointer;" data-booking-action="suspend">Suspend</button></td></tr>
+            <tr><td>Deepak Verma</td><td>🧹 Cleaning</td><td>Bhubaneswar</td><td>—</td><td>0</td><td>₹0</td><td><span class="status-badge status-pending">Pending KYC</span></td><td><button class="btn btn-sm btn-teal" onclick="document.querySelector('[data-page=verification]').click()">Review</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- KYC VERIFICATION -->
+    <div class="page-section" id="page-verification">
+      <h3 style="margin-bottom:8px">KYC Verification Queue</h3>
+      <p class="text-muted mb-24">Review and approve service provider identity documents.</p>
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <div class="table-card" style="padding:20px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px">
+            <div>
+              <div style="font-weight:700;font-size:1.05rem;margin-bottom:4px">Deepak Verma</div>
+              <div style="color:var(--mid-gray);font-size:0.85rem">🧹 Cleaning Services · Bhubaneswar &nbsp;|&nbsp; Submitted: Apr 21, 2026</div>
+            </div>
+            <span class="status-badge status-pending">⏳ Pending Review</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:16px">
+            <div style="background:var(--light-gray);border-radius:8px;padding:14px;text-align:center">
+              <div style="font-size:1.8rem;margin-bottom:6px">🪪</div>
+              <div style="font-size:0.8rem;font-weight:600">Aadhaar Card</div>
+              <div style="font-size:0.75rem;color:var(--success);margin-top:4px">✓ Uploaded</div>
+            </div>
+            <div style="background:var(--light-gray);border-radius:8px;padding:14px;text-align:center">
+              <div style="font-size:1.8rem;margin-bottom:6px">📄</div>
+              <div style="font-size:0.8rem;font-weight:600">PAN Card</div>
+              <div style="font-size:0.75rem;color:var(--success);margin-top:4px">✓ Uploaded</div>
+            </div>
+            <div style="background:var(--light-gray);border-radius:8px;padding:14px;text-align:center">
+              <div style="font-size:1.8rem;margin-bottom:6px">🎓</div>
+              <div style="font-size:0.8rem;font-weight:600">Certificate</div>
+              <div style="font-size:0.75rem;color:var(--success);margin-top:4px">✓ Uploaded</div>
+            </div>
+          </div>
+          <form class="approval-form" style="display:flex;gap:12px;flex-wrap:wrap">
+            <button type="submit" class="btn btn-teal" data-action="approve">✓ Approve Provider</button>
+            <button type="submit" class="btn" style="background:rgba(229,57,53,0.1);color:var(--danger);border:1.5px solid rgba(229,57,53,0.2);border-radius:99px;padding:12px 24px;font-size:0.95rem;cursor:pointer;" data-action="reject">✕ Reject with Reason</button>
+          </form>
+        </div>
+
+        <div class="table-card" style="padding:20px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px">
+            <div>
+              <div style="font-weight:700;font-size:1.05rem;margin-bottom:4px">Meera Joshi</div>
+              <div style="color:var(--mid-gray);font-size:0.85rem">⚖️ Legal Advisor · Cuttack &nbsp;|&nbsp; Submitted: Apr 22, 2026</div>
+            </div>
+            <span class="status-badge status-pending">⏳ Pending Review</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:16px">
+            <div style="background:var(--light-gray);border-radius:8px;padding:14px;text-align:center"><div style="font-size:1.8rem;margin-bottom:6px">🪪</div><div style="font-size:0.8rem;font-weight:600">Aadhaar Card</div><div style="font-size:0.75rem;color:var(--success);margin-top:4px">✓ Uploaded</div></div>
+            <div style="background:var(--light-gray);border-radius:8px;padding:14px;text-align:center"><div style="font-size:1.8rem;margin-bottom:6px">📄</div><div style="font-size:0.8rem;font-weight:600">Bar Council Cert</div><div style="font-size:0.75rem;color:var(--success);margin-top:4px">✓ Uploaded</div></div>
+          </div>
+          <form class="approval-form" style="display:flex;gap:12px;flex-wrap:wrap">
+            <button type="submit" class="btn btn-teal" data-action="approve">✓ Approve Provider</button>
+            <button type="submit" class="btn" style="background:rgba(229,57,53,0.1);color:var(--danger);border:1.5px solid rgba(229,57,53,0.2);border-radius:99px;padding:12px 24px;font-size:0.95rem;cursor:pointer;" data-action="reject">✕ Reject with Reason</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOKINGS -->
+    <div class="page-section" id="page-bookings">
+      <h3 style="margin-bottom:8px">All Bookings</h3>
+      <p class="text-muted mb-24">Platform-wide booking management.</p>
+      <div class="filter-bar">
+        <button class="filter-chip active">All</button>
+        <button class="filter-chip">Scheduled</button>
+        <button class="filter-chip">In Progress</button>
+        <button class="filter-chip">Completed</button>
+        <button class="filter-chip">Cancelled</button>
+      </div>
+      <div class="table-card">
+        <div class="table-header"><div class="table-title">Booking Records</div><button class="btn btn-sm" style="background:var(--light-gray);color:var(--dark-gray);border-radius:99px;padding:8px 18px;cursor:pointer;" data-export>⬇ Export</button></div>
+        <table class="data-table">
+          <thead><tr><th>Booking ID</th><th>Customer</th><th>Provider</th><th>Service</th><th>Date</th><th>Amount</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>#SH-0425</td><td>Ananya Singh</td><td>Rajesh Kumar</td><td>⚡ Electrical</td><td>Apr 25</td><td>₹450</td><td><span class="status-badge status-pending">Scheduled</span></td></tr>
+            <tr><td>#SH-0422</td><td>Rahul Sharma</td><td>Sunil Das</td><td>🔧 Plumbing</td><td>Apr 22</td><td>₹320</td><td><span class="status-badge status-pending">In Progress</span></td></tr>
+            <tr><td>#SH-0420</td><td>Kavita Rao</td><td>Rajesh Kumar</td><td>⚡ Fan Install</td><td>Apr 20</td><td>₹380</td><td><span class="status-badge status-active">Completed</span></td></tr>
+            <tr><td>#SH-0418</td><td>Vikram Patel</td><td>CleanPro</td><td>🧹 Cleaning</td><td>Apr 18</td><td>₹799</td><td><span class="status-badge status-active">Completed</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TRANSACTIONS -->
+    <div class="page-section" id="page-transactions">
+      <h3 style="margin-bottom:8px">Transaction Ledger</h3>
+      <p class="text-muted mb-24">Complete financial transaction records.</p>
+      <div class="stats-grid mb-24">
+        <div class="stat-card gold"><span class="stat-icon">💰</span><div class="stat-val">₹12.4L</div><div class="stat-desc">This Month</div></div>
+        <div class="stat-card teal"><span class="stat-icon">🏦</span><div class="stat-val">₹1.24L</div><div class="stat-desc">Platform Commission (10%)</div></div>
+        <div class="stat-card"><span class="stat-icon">↩️</span><div class="stat-val">₹28,400</div><div class="stat-desc">Refunds Issued</div></div>
+        <div class="stat-card"><span class="stat-icon">📤</span><div class="stat-val">₹9.8L</div><div class="stat-desc">Provider Payouts</div></div>
+      </div>
+      <div class="table-card">
+        <div class="table-header"><div class="table-title">All Transactions</div><button class="btn btn-sm" style="background:var(--light-gray);color:var(--dark-gray);border-radius:99px;padding:8px 18px;cursor:pointer;" data-export>⬇ Export CSV</button></div>
+        <table class="data-table">
+          <thead><tr><th>Transaction ID</th><th>From</th><th>To</th><th>Amount</th><th>Method</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>TXN-001</td><td>Ananya Singh</td><td>Escrow</td><td>₹450</td><td>UPI</td><td>Apr 22</td><td><span class="status-badge status-active">Success</span></td></tr>
+            <tr><td>TXN-002</td><td>Escrow</td><td>Rajesh Kumar</td><td>₹405</td><td>Bank Transfer</td><td>Apr 22</td><td><span class="status-badge status-active">Success</span></td></tr>
+            <tr><td>TXN-003</td><td>Rahul Sharma</td><td>Escrow</td><td>₹320</td><td>Card</td><td>Apr 22</td><td><span class="status-badge status-completed">Holding</span></td></tr>
+            <tr><td>TXN-004</td><td>Kavita Rao</td><td>Refund</td><td>₹599</td><td>UPI Refund</td><td>Apr 10</td><td><span class="status-badge status-completed">Refunded</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- DISPUTES -->
+    <div class="page-section" id="page-disputes">
+      <h3 style="margin-bottom:8px">Dispute Resolution</h3>
+      <p class="text-muted mb-24">Mediate and resolve platform disputes within 48 hours.</p>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="table-card" style="padding:20px;border-left:4px solid var(--danger)">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:12px">
+            <div>
+              <span class="status-badge status-rejected" style="margin-bottom:8px;display:inline-block">⚠️ Open Dispute</span>
+              <div style="font-weight:700;font-size:1rem;margin-bottom:4px">Dispute #DSP-001 – Service Quality Issue</div>
+              <div style="color:var(--mid-gray);font-size:0.85rem">Customer: Ananya Singh &nbsp;|&nbsp; Provider: Rajesh Kumar &nbsp;|&nbsp; Booking: #SH-0420</div>
+            </div>
+          </div>
+          <div style="background:var(--light-gray);padding:12px;border-radius:8px;font-size:0.85rem;margin-bottom:16px">
+            <strong>Customer complaint:</strong> "The electrician did not fix the issue properly. The switch is still not working after his visit. I paid ₹450 and want a refund."
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn-teal" data-dispute="refund">💰 Process Refund to Customer</button>
+            <button class="btn" style="background:rgba(255,179,0,0.1);color:var(--warning);border:1.5px solid rgba(255,179,0,0.3);border-radius:99px;padding:12px 20px;font-size:0.9rem;cursor:pointer;" data-dispute="dismiss">✕ Dismiss Dispute</button>
+          </div>
+        </div>
+        <div class="table-card" style="padding:20px;border-left:4px solid var(--warning)">
+          <div style="font-weight:700;font-size:1rem;margin-bottom:4px">Dispute #DSP-002 – No Show by Provider</div>
+          <div style="color:var(--mid-gray);font-size:0.85rem;margin-bottom:12px">Customer: Vikram Patel &nbsp;|&nbsp; Provider: CleanPro &nbsp;|&nbsp; Booking: #SH-0418</div>
+          <div style="background:var(--light-gray);padding:12px;border-radius:8px;font-size:0.85rem;margin-bottom:16px">
+            <strong>Customer complaint:</strong> "The cleaning team never showed up for the scheduled slot. I had to take leave from work."
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn btn-teal" data-dispute="refund">💰 Full Refund + ₹50 Coupon</button>
+            <button class="btn" style="background:rgba(255,179,0,0.1);color:var(--warning);border:1.5px solid rgba(255,179,0,0.3);border-radius:99px;padding:12px 20px;font-size:0.9rem;cursor:pointer;" data-dispute="dismiss">✕ Dismiss</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REPORTS -->
+    <div class="page-section" id="page-reports">
+      <h3 style="margin-bottom:8px">Generate Reports</h3>
+      <p class="text-muted mb-24">Download platform data and analytics reports.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px">
+        <div class="table-card" style="padding:24px;text-align:center">
+          <div style="font-size:3rem;margin-bottom:12px">📊</div>
+          <h4 style="margin-bottom:8px">Weekly Report</h4>
+          <p style="font-size:0.85rem;margin-bottom:16px">Bookings, revenue, and user activity summary for the past week.</p>
+          <button class="btn btn-primary btn-sm" data-export>⬇ Download</button>
+        </div>
+        <div class="table-card" style="padding:24px;text-align:center">
+          <div style="font-size:3rem;margin-bottom:12px">📈</div>
+          <h4 style="margin-bottom:8px">Monthly Report</h4>
+          <p style="font-size:0.85rem;margin-bottom:16px">Complete monthly analytics including growth metrics and provider performance.</p>
+          <button class="btn btn-teal btn-sm" data-export>⬇ Download</button>
+        </div>
+        <div class="table-card" style="padding:24px;text-align:center">
+          <div style="font-size:3rem;margin-bottom:12px">💰</div>
+          <h4 style="margin-bottom:8px">Financial Report</h4>
+          <p style="font-size:0.85rem;margin-bottom:16px">Transaction ledger, commission earned, and payout records.</p>
+          <button class="btn" style="background:var(--gold);color:white;border-radius:99px;padding:8px 18px;font-size:0.85rem;cursor:pointer;font-weight:600;border:none;" data-export>⬇ Download</button>
+        </div>
+        <div class="table-card" style="padding:24px;text-align:center">
+          <div style="font-size:3rem;margin-bottom:12px">👥</div>
+          <h4 style="margin-bottom:8px">User Report</h4>
+          <p style="font-size:0.85rem;margin-bottom:16px">Customer and provider registration, activity, and churn data.</p>
+          <button class="btn btn-primary btn-sm" data-export>⬇ Download</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="page-section" id="page-settings">
+      <h3 style="margin-bottom:8px">Platform Settings</h3>
+      <p class="text-muted mb-24">Configure platform-wide parameters and policies.</p>
+      <div class="table-card" style="padding:28px">
+        <div style="display:flex;flex-direction:column;gap:24px">
+          <div>
+            <h4 style="margin-bottom:16px">Platform Configuration</h4>
+            <div class="grid-2">
+              <div class="form-group"><label class="form-label">Platform Commission (%)</label><input class="form-control" type="number" value="10" /></div>
+              <div class="form-group"><label class="form-label">KYC Review SLA (hours)</label><input class="form-control" type="number" value="48" /></div>
+              <div class="form-group"><label class="form-label">Provider Payout Frequency</label><select class="form-control"><option selected>Weekly (Every Monday)</option><option>Bi-weekly</option><option>Monthly</option></select></div>
+              <div class="form-group"><label class="form-label">Max Booking Cancellation (hours)</label><input class="form-control" type="number" value="2" /></div>
+            </div>
+          </div>
+          <div>
+            <h4 style="margin-bottom:16px">Notification Settings</h4>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <label style="display:flex;align-items:center;gap:12px;cursor:pointer"><input type="checkbox" checked /> <span>Send email confirmations for all bookings</span></label>
+              <label style="display:flex;align-items:center;gap:12px;cursor:pointer"><input type="checkbox" checked /> <span>SMS alerts for payment transactions</span></label>
+              <label style="display:flex;align-items:center;gap:12px;cursor:pointer"><input type="checkbox" checked /> <span>Push notifications for real-time tracking</span></label>
+              <label style="display:flex;align-items:center;gap:12px;cursor:pointer"><input type="checkbox" /> <span>Daily platform summary email to admin</span></label>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="showToast('Settings saved successfully!','success')">Save Settings</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/dashboard.js"></script>
+<script>
+  if (window.innerWidth <= 900) document.getElementById('mobile-ham').style.display = 'flex';
+  window.addEventListener('resize', () => {
+    const ham = document.getElementById('mobile-ham');
+    if (ham) ham.style.display = window.innerWidth <= 900 ? 'flex' : 'none';
+  });
+</script>
+</body>
+</html>

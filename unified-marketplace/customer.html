@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Dashboard – ServeHub</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="dash-layout">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">🔧</div>
+      <span class="logo-text">Serve<span>Hub</span></span>
+    </a>
+    <div class="sidebar-user">
+      <div class="sidebar-avatar">😊</div>
+      <div class="sidebar-user-info">
+        <div class="user-name">Rahul Sharma</div>
+        <div class="user-role">Customer Account</div>
+      </div>
+    </div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">
+      <div class="nav-section-label">Main Menu</div>
+      <button class="nav-item active" data-page="dashboard">
+        <span class="nav-icon">🏠</span><span class="nav-label">Dashboard</span>
+      </button>
+      <button class="nav-item" data-page="browse">
+        <span class="nav-icon">🔍</span><span class="nav-label">Browse Services</span>
+      </button>
+      <button class="nav-item" data-page="bookings">
+        <span class="nav-icon">📅</span><span class="nav-label">My Bookings</span>
+        <span class="nav-badge">3</span>
+      </button>
+      <button class="nav-item" data-page="tracking">
+        <span class="nav-icon">📍</span><span class="nav-label">Live Tracking</span>
+      </button>
+      <button class="nav-item" data-page="payments">
+        <span class="nav-icon">💳</span><span class="nav-label">Payments</span>
+      </button>
+      <button class="nav-item" data-page="notifications">
+        <span class="nav-icon">🔔</span><span class="nav-label">Notifications</span>
+        <span class="nav-badge">5</span>
+      </button>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Account</div>
+      <button class="nav-item" data-page="profile">
+        <span class="nav-icon">👤</span><span class="nav-label">My Profile</span>
+      </button>
+      <button class="nav-item" data-page="reviews">
+        <span class="nav-icon">⭐</span><span class="nav-label">My Reviews</span>
+      </button>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="index.html" class="btn btn-outline-white btn-sm btn-full">← Back to Home</a>
+  </div>
+</aside>
+<div class="dash-overlay" id="dash-overlay"></div>
+
+<!-- MAIN -->
+<main class="dash-main">
+  <div class="dash-topbar">
+    <div style="display:flex; align-items:center; gap:16px">
+      <button class="topbar-icon-btn" id="mobile-ham" style="display:none">☰</button>
+      <div class="topbar-title" id="topbar-title">Dashboard</div>
+    </div>
+    <div class="topbar-actions">
+      <button class="topbar-icon-btn" onclick="openModal('booking-modal')" title="Book Service">➕</button>
+      <button class="topbar-icon-btn" title="Notifications">
+        🔔<span class="notif-dot"></span>
+      </button>
+      <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--gold));display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;">😊</div>
+    </div>
+  </div>
+
+  <div class="dash-content">
+
+    <!-- DASHBOARD PAGE -->
+    <div class="page-section active" id="page-dashboard">
+      <div style="margin-bottom:24px">
+        <h3>Good Morning, Rahul! 👋</h3>
+        <p class="text-muted">Here's a summary of your account activity.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-icon">📅</span>
+          <div class="stat-val">12</div>
+          <div class="stat-desc">Total Bookings</div>
+          <div class="stat-change up">↑ 3 this month</div>
+        </div>
+        <div class="stat-card teal">
+          <span class="stat-icon">✅</span>
+          <div class="stat-val">9</div>
+          <div class="stat-desc">Completed Services</div>
+          <div class="stat-change up">↑ 2 this month</div>
+        </div>
+        <div class="stat-card gold">
+          <span class="stat-icon">💰</span>
+          <div class="stat-val">₹4,820</div>
+          <div class="stat-desc">Total Spent</div>
+          <div class="stat-change up">↑ ₹780 this month</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">⭐</span>
+          <div class="stat-val">4.8</div>
+          <div class="stat-desc">Avg Rating Given</div>
+          <div class="stat-change up">Based on 9 reviews</div>
+        </div>
+      </div>
+
+      <!-- Recent Bookings -->
+      <div class="table-card mb-24">
+        <div class="table-header">
+          <div class="table-title">Recent Bookings</div>
+          <button class="btn btn-primary btn-sm" onclick="document.querySelector('[data-page=bookings]').click()">View All</button>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>Service</th><th>Provider</th><th>Date</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>⚡ Electrical Repair</td>
+              <td>Rajesh Kumar</td>
+              <td>Apr 20, 2026</td>
+              <td>₹450</td>
+              <td><span class="status-badge status-active">Completed</span></td>
+              <td><button class="btn btn-sm btn-teal" data-booking-action="review">Review</button></td>
+            </tr>
+            <tr>
+              <td>🔧 Plumbing Fix</td>
+              <td>Sunil Das</td>
+              <td>Apr 22, 2026</td>
+              <td>₹320</td>
+              <td><span class="status-badge status-pending">In Progress</span></td>
+              <td><button class="btn btn-sm btn-primary" data-booking-action="track">Track</button></td>
+            </tr>
+            <tr>
+              <td>🧹 Home Cleaning</td>
+              <td>CleanPro Team</td>
+              <td>Apr 24, 2026</td>
+              <td>₹799</td>
+              <td><span class="status-badge status-pending">Scheduled</span></td>
+              <td><button class="btn btn-sm" style="background:var(--light-gray);color:var(--dark-gray);border-radius:99px;padding:6px 14px;font-size:0.82rem;cursor:pointer;" data-booking-action="cancel">Cancel</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Quick Book -->
+      <div class="table-card">
+        <div class="table-header">
+          <div class="table-title">Quick Book Popular Services</div>
+        </div>
+        <div style="padding:20px; display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:12px;">
+          <button class="service-card" style="text-align:center;padding:16px;border:1.5px solid var(--light-gray);border-radius:12px;cursor:pointer;background:var(--white);" onclick="openModal('booking-modal')">
+            <div style="font-size:2rem;margin-bottom:8px">⚡</div><div style="font-weight:600;font-size:0.9rem">Electrical</div>
+          </button>
+          <button class="service-card" style="text-align:center;padding:16px;border:1.5px solid var(--light-gray);border-radius:12px;cursor:pointer;background:var(--white);" onclick="openModal('booking-modal')">
+            <div style="font-size:2rem;margin-bottom:8px">🔧</div><div style="font-weight:600;font-size:0.9rem">Plumbing</div>
+          </button>
+          <button class="service-card" style="text-align:center;padding:16px;border:1.5px solid var(--light-gray);border-radius:12px;cursor:pointer;background:var(--white);" onclick="openModal('booking-modal')">
+            <div style="font-size:2rem;margin-bottom:8px">🧹</div><div style="font-weight:600;font-size:0.9rem">Cleaning</div>
+          </button>
+          <button class="service-card" style="text-align:center;padding:16px;border:1.5px solid var(--light-gray);border-radius:12px;cursor:pointer;background:var(--white);" onclick="openModal('booking-modal')">
+            <div style="font-size:2rem;margin-bottom:8px">🏥</div><div style="font-weight:600;font-size:0.9rem">Medical</div>
+          </button>
+          <button class="service-card" style="text-align:center;padding:16px;border:1.5px solid var(--light-gray);border-radius:12px;cursor:pointer;background:var(--white);" onclick="openModal('booking-modal')">
+            <div style="font-size:2rem;margin-bottom:8px">⚖️</div><div style="font-weight:600;font-size:0.9rem">Legal</div>
+          </button>
+          <button class="service-card" style="text-align:center;padding:16px;border:1.5px dashed var(--accent);border-radius:12px;cursor:pointer;background:rgba(255,107,53,0.04);color:var(--accent);" onclick="openModal('booking-modal')">
+            <div style="font-size:2rem;margin-bottom:8px">➕</div><div style="font-weight:600;font-size:0.9rem">More</div>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BROWSE PAGE -->
+    <div class="page-section" id="page-browse">
+      <h3 style="margin-bottom:8px">Browse Services</h3>
+      <p class="text-muted mb-24">Filter and find the right professional for your needs.</p>
+      <div class="filter-bar">
+        <button class="filter-chip active">All</button>
+        <button class="filter-chip">⚡ Electrical</button>
+        <button class="filter-chip">🔧 Plumbing</button>
+        <button class="filter-chip">🧹 Cleaning</button>
+        <button class="filter-chip">🏥 Medical</button>
+        <button class="filter-chip">🏗️ Construction</button>
+        <button class="filter-chip">⚖️ Legal</button>
+        <button class="filter-chip">⭐ Top Rated</button>
+        <button class="filter-chip">📍 Nearby</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px">
+        <!-- Provider Cards -->
+        <div class="provider-card" style="text-align:left;padding:20px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div class="provider-avatar" style="width:56px;height:56px;font-size:1.4rem;flex-shrink:0">👨‍🔧</div>
+            <div style="flex:1">
+              <div class="verified-badge" style="margin-bottom:4px">✓ Verified</div>
+              <div class="provider-name" style="font-size:1rem">Rajesh Kumar</div>
+              <div class="provider-category">⚡ Electrician · Bhubaneswar</div>
+              <div style="color:var(--gold);margin:6px 0;font-size:0.9rem">★★★★★ <span style="color:var(--mid-gray);font-size:0.8rem">(234)</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-weight:700;color:var(--accent)">₹299/hr</span>
+                <button class="btn btn-primary btn-sm" onclick="openModal('booking-modal')">Book</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="provider-card" style="text-align:left;padding:20px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div class="provider-avatar" style="width:56px;height:56px;font-size:1.4rem;flex-shrink:0">👩‍⚕️</div>
+            <div style="flex:1">
+              <div class="verified-badge" style="margin-bottom:4px">✓ Verified</div>
+              <div class="provider-name" style="font-size:1rem">Dr. Priya Sharma</div>
+              <div class="provider-category">🏥 Medical · Bhubaneswar</div>
+              <div style="color:var(--gold);margin:6px 0;font-size:0.9rem">★★★★★ <span style="color:var(--mid-gray);font-size:0.8rem">(189)</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-weight:700;color:var(--accent)">₹599/visit</span>
+                <button class="btn btn-primary btn-sm" onclick="openModal('booking-modal')">Book</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="provider-card" style="text-align:left;padding:20px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div class="provider-avatar" style="width:56px;height:56px;font-size:1.4rem;flex-shrink:0">🔧</div>
+            <div style="flex:1">
+              <div class="verified-badge" style="margin-bottom:4px">✓ Verified</div>
+              <div class="provider-name" style="font-size:1rem">Sunil Das</div>
+              <div class="provider-category">🔧 Plumber · Cuttack</div>
+              <div style="color:var(--gold);margin:6px 0;font-size:0.9rem">★★★★☆ <span style="color:var(--mid-gray);font-size:0.8rem">(98)</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-weight:700;color:var(--accent)">₹249/hr</span>
+                <button class="btn btn-primary btn-sm" onclick="openModal('booking-modal')">Book</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="provider-card" style="text-align:left;padding:20px">
+          <div style="display:flex;gap:14px;align-items:flex-start">
+            <div class="provider-avatar" style="width:56px;height:56px;font-size:1.4rem;flex-shrink:0">🧹</div>
+            <div style="flex:1">
+              <div class="verified-badge" style="margin-bottom:4px">✓ Verified</div>
+              <div class="provider-name" style="font-size:1rem">CleanPro Services</div>
+              <div class="provider-category">🧹 Cleaning · Bhubaneswar</div>
+              <div style="color:var(--gold);margin:6px 0;font-size:0.9rem">★★★★★ <span style="color:var(--mid-gray);font-size:0.8rem">(312)</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-weight:700;color:var(--accent)">₹349/session</span>
+                <button class="btn btn-primary btn-sm" onclick="openModal('booking-modal')">Book</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOKINGS PAGE -->
+    <div class="page-section" id="page-bookings">
+      <h3 style="margin-bottom:8px">My Bookings</h3>
+      <p class="text-muted mb-24">Manage all your service bookings in one place.</p>
+      <div class="filter-bar">
+        <button class="filter-chip active">All</button>
+        <button class="filter-chip">Scheduled</button>
+        <button class="filter-chip">In Progress</button>
+        <button class="filter-chip">Completed</button>
+        <button class="filter-chip">Cancelled</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="booking-card">
+          <div class="booking-icon">⚡</div>
+          <div class="booking-info">
+            <div class="booking-service">Electrical Repair – Rajesh Kumar</div>
+            <div class="booking-meta">📅 Apr 20, 2026 · 10:00 AM &nbsp; 📍 123 MG Road, Bhubaneswar &nbsp; 💰 ₹450</div>
+          </div>
+          <span class="status-badge status-active">Completed</span>
+          <div class="booking-actions">
+            <button class="btn btn-teal btn-sm" data-booking-action="review">Review</button>
+          </div>
+        </div>
+        <div class="booking-card">
+          <div class="booking-icon">🔧</div>
+          <div class="booking-info">
+            <div class="booking-service">Plumbing Fix – Sunil Das</div>
+            <div class="booking-meta">📅 Apr 22, 2026 · 2:00 PM &nbsp; 📍 45 Saheed Nagar &nbsp; 💰 ₹320</div>
+          </div>
+          <span class="status-badge status-pending">In Progress</span>
+          <div class="booking-actions">
+            <button class="btn btn-primary btn-sm" data-booking-action="track">Track</button>
+          </div>
+        </div>
+        <div class="booking-card">
+          <div class="booking-icon">🧹</div>
+          <div class="booking-info">
+            <div class="booking-service">Home Cleaning – CleanPro Team</div>
+            <div class="booking-meta">📅 Apr 24, 2026 · 9:00 AM &nbsp; 📍 7 Patia, Bhubaneswar &nbsp; 💰 ₹799</div>
+          </div>
+          <span class="status-badge status-pending">Scheduled</span>
+          <div class="booking-actions">
+            <button class="btn btn-sm" style="background:var(--light-gray);color:var(--dark-gray);border-radius:99px;padding:6px 14px;font-size:0.82rem;cursor:pointer;" data-booking-action="cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRACKING PAGE -->
+    <div class="page-section" id="page-tracking">
+      <h3 style="margin-bottom:8px">Live Tracking</h3>
+      <p class="text-muted mb-24">Track your service provider in real-time.</p>
+      <div class="table-card" style="padding:20px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:12px">
+          <div>
+            <div style="font-weight:600;font-size:1.05rem">🔧 Plumbing Fix · Sunil Das</div>
+            <div style="color:var(--mid-gray);font-size:0.85rem">Booking #SH-2026-0422 · In Progress</div>
+          </div>
+          <span class="status-badge status-active" style="font-size:0.8rem">🟢 Provider En Route</span>
+        </div>
+        <div class="map-placeholder">
+          <svg class="map-grid" width="100%" height="100%">
+            <defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a5276" stroke-width="0.5"/></pattern></defs>
+            <rect width="100%" height="100%" fill="url(#grid)"/>
+          </svg>
+          <div style="text-align:center;z-index:1;position:relative">
+            <div class="map-pin">📍</div>
+            <div style="background:white;padding:8px 16px;border-radius:8px;font-size:0.85rem;font-weight:600;box-shadow:var(--shadow-md)">Sunil Das is 1.2 km away</div>
+          </div>
+        </div>
+        <div class="tracking-info">
+          <div class="tracking-stat"><div class="tracking-val">1.2 km</div><div class="tracking-label">Distance Away</div></div>
+          <div class="tracking-stat"><div class="tracking-val">~8 min</div><div class="tracking-label">ETA</div></div>
+          <div class="tracking-stat"><div class="tracking-val">2:00 PM</div><div class="tracking-label">Booking Time</div></div>
+          <div class="tracking-stat"><div class="tracking-val">₹320</div><div class="tracking-label">Estimated Cost</div></div>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
+          <button class="btn btn-teal">💬 Message Provider</button>
+          <button class="btn btn-primary">📞 Call Provider</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAYMENTS PAGE -->
+    <div class="page-section" id="page-payments">
+      <h3 style="margin-bottom:8px">Payment History</h3>
+      <p class="text-muted mb-24">All your transaction records.</p>
+      <div class="table-card">
+        <div class="table-header">
+          <div class="table-title">Transactions</div>
+          <button class="btn btn-sm" style="background:var(--light-gray);color:var(--dark-gray);border-radius:99px;padding:8px 18px;cursor:pointer;" data-export>⬇ Export</button>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>Booking ID</th><th>Service</th><th>Amount</th><th>Date</th><th>Method</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>#SH-0420</td><td>Electrical Repair</td><td>₹450</td><td>Apr 20</td><td>UPI</td><td><span class="status-badge status-active">Paid</span></td></tr>
+            <tr><td>#SH-0322</td><td>Plumbing</td><td>₹320</td><td>Mar 22</td><td>Card</td><td><span class="status-badge status-active">Paid</span></td></tr>
+            <tr><td>#SH-0315</td><td>Home Cleaning</td><td>₹799</td><td>Mar 15</td><td>Wallet</td><td><span class="status-badge status-active">Paid</span></td></tr>
+            <tr><td>#SH-0210</td><td>Legal Consultation</td><td>₹599</td><td>Feb 10</td><td>UPI</td><td><span class="status-badge status-completed">Refunded</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- NOTIFICATIONS PAGE -->
+    <div class="page-section" id="page-notifications">
+      <h3 style="margin-bottom:8px">Notifications</h3>
+      <p class="text-muted mb-24">Stay updated with your service activity.</p>
+      <div class="table-card" style="padding:20px 24px">
+        <div class="notif-item">
+          <div class="notif-dot2"></div>
+          <div class="notif-content"><div class="notif-title">Booking Confirmed ✅</div><div class="notif-desc">Your cleaning service on Apr 24 has been confirmed by CleanPro Team.</div></div>
+          <div class="notif-time">2 min ago</div>
+        </div>
+        <div class="notif-item">
+          <div class="notif-dot2"></div>
+          <div class="notif-content"><div class="notif-title">Provider En Route 📍</div><div class="notif-desc">Sunil Das has started heading to your location. ETA: 8 minutes.</div></div>
+          <div class="notif-time">15 min ago</div>
+        </div>
+        <div class="notif-item">
+          <div class="notif-dot2"></div>
+          <div class="notif-content"><div class="notif-title">Payment Successful 💳</div><div class="notif-desc">₹450 paid for Electrical Repair. Invoice sent to your email.</div></div>
+          <div class="notif-time">2 days ago</div>
+        </div>
+        <div class="notif-item">
+          <div class="notif-dot2 read"></div>
+          <div class="notif-content"><div class="notif-title">Rate Your Service ⭐</div><div class="notif-desc">How was your experience with Rajesh Kumar? Share your feedback.</div></div>
+          <div class="notif-time">3 days ago</div>
+        </div>
+        <div class="notif-item">
+          <div class="notif-dot2 read"></div>
+          <div class="notif-content"><div class="notif-title">Welcome to ServeHub! 🎉</div><div class="notif-desc">Your account is ready. Book your first service today!</div></div>
+          <div class="notif-time">1 week ago</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE PAGE -->
+    <div class="page-section" id="page-profile">
+      <h3 style="margin-bottom:8px">My Profile</h3>
+      <p class="text-muted mb-24">Update your personal information.</p>
+      <div class="profile-card mb-24">
+        <div class="profile-banner"></div>
+        <div class="profile-body">
+          <div class="profile-pic">😊</div>
+          <div class="profile-name">Rahul Sharma</div>
+          <div class="profile-email">rahul.sharma@email.com · +91 98765 43210</div>
+          <div style="display:flex;gap:24px;margin-top:16px">
+            <div><div style="font-weight:700;font-size:1.1rem">12</div><div style="color:var(--mid-gray);font-size:0.8rem">Bookings</div></div>
+            <div><div style="font-weight:700;font-size:1.1rem">9</div><div style="color:var(--mid-gray);font-size:0.8rem">Completed</div></div>
+            <div><div style="font-weight:700;font-size:1.1rem">4.8⭐</div><div style="color:var(--mid-gray);font-size:0.8rem">Avg Rating</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="table-card" style="padding:28px">
+        <form id="profile-form">
+          <div class="grid-2">
+            <div class="form-group"><label class="form-label">Full Name</label><input class="form-control" type="text" value="Rahul Sharma" /></div>
+            <div class="form-group"><label class="form-label">Email</label><input class="form-control" type="email" value="rahul.sharma@email.com" /></div>
+            <div class="form-group"><label class="form-label">Mobile</label><input class="form-control" type="tel" value="+91 98765 43210" /></div>
+            <div class="form-group"><label class="form-label">City</label><input class="form-control" type="text" value="Bhubaneswar" /></div>
+          </div>
+          <div class="form-group"><label class="form-label">Full Address</label><textarea class="form-control" rows="2">123 MG Road, Unit 3, Bhubaneswar, Odisha – 751001</textarea></div>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- REVIEWS PAGE -->
+    <div class="page-section" id="page-reviews">
+      <h3 style="margin-bottom:8px">My Reviews</h3>
+      <p class="text-muted mb-24">Reviews you've submitted for service providers.</p>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="testimonial-card">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+            <strong>Rajesh Kumar – Electrician</strong><span style="color:var(--gold)">★★★★★</span>
+          </div>
+          <p class="testimonial-text">Excellent work! Fixed all the wiring issues quickly and professionally. Highly recommend!</p>
+          <div style="color:var(--mid-gray);font-size:0.8rem">Posted on Apr 20, 2026</div>
+        </div>
+        <div class="testimonial-card">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+            <strong>CleanPro Team – Cleaning</strong><span style="color:var(--gold)">★★★★☆</span>
+          </div>
+          <p class="testimonial-text">Very thorough and punctual. The house was spotless. Minor issue with one corner but overall great service.</p>
+          <div style="color:var(--mid-gray);font-size:0.8rem">Posted on Mar 15, 2026</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end dash-content -->
+</main>
+</div><!-- end dash-layout -->
+
+<!-- MODALS -->
+<div class="modal-overlay" id="booking-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Book a Service 📅</div>
+      <button class="modal-close">✕</button>
+    </div>
+    <form id="booking-form">
+      <div class="form-group"><label class="form-label">Service Category</label>
+        <select class="form-control"><option>Electrical Work</option><option>Plumbing</option><option>Cleaning</option><option>Construction</option><option>Medical</option><option>Legal</option></select></div>
+      <div class="form-group"><label class="form-label">Date</label><input class="form-control" type="date" /></div>
+      <div class="form-group"><label class="form-label">Time Slot</label>
+        <select class="form-control"><option>9:00 AM – 11:00 AM</option><option>11:00 AM – 1:00 PM</option><option>2:00 PM – 4:00 PM</option><option>4:00 PM – 6:00 PM</option></select></div>
+      <div class="form-group"><label class="form-label">Address</label><input class="form-control" type="text" placeholder="Service address" /></div>
+      <div class="form-group"><label class="form-label">Notes</label><textarea class="form-control" rows="2" placeholder="Describe your issue..."></textarea></div>
+      <div style="background:var(--light-gray);padding:12px;border-radius:8px;font-size:0.85rem;margin-bottom:16px">💳 Payment held in escrow — released after service completion</div>
+      <button type="submit" class="btn btn-primary btn-full">Confirm Booking →</button>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="tracking-modal">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Live Tracking 📍</div><button class="modal-close">✕</button></div>
+    <div class="map-placeholder" style="height:220px">
+      <svg width="100%" height="100%"><defs><pattern id="g2" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a5276" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#g2)"/></svg>
+      <div style="z-index:1;text-align:center"><div class="map-pin">📍</div></div>
+    </div>
+    <div class="tracking-info" style="margin-top:16px">
+      <div class="tracking-stat"><div class="tracking-val">1.2 km</div><div class="tracking-label">Away</div></div>
+      <div class="tracking-stat"><div class="tracking-val">~8 min</div><div class="tracking-label">ETA</div></div>
+    </div>
+    <div style="margin-top:16px;padding:12px;background:rgba(0,194,178,0.1);border-radius:8px;font-size:0.85rem;color:var(--teal);font-weight:500">
+      📱 Provider will notify you when 500m away
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="review-modal">
+  <div class="modal">
+    <div class="modal-header"><div class="modal-title">Rate & Review ⭐</div><button class="modal-close">✕</button></div>
+    <form id="review-form">
+      <div style="text-align:center;margin-bottom:24px">
+        <div style="font-size:2.5rem;margin-bottom:8px">👨‍🔧</div>
+        <div style="font-weight:600">Rajesh Kumar</div>
+        <div style="color:var(--mid-gray);font-size:0.85rem">Electrical Repair · Apr 20, 2026</div>
+      </div>
+      <div class="form-group" style="text-align:center">
+        <label class="form-label">Your Rating</label>
+        <div class="star-rating" style="font-size:2.5rem;cursor:pointer;display:flex;justify-content:center;gap:8px" data-value="0">
+          <span class="star" style="color:#ddd">★</span>
+          <span class="star" style="color:#ddd">★</span>
+          <span class="star" style="color:#ddd">★</span>
+          <span class="star" style="color:#ddd">★</span>
+          <span class="star" style="color:#ddd">★</span>
+        </div>
+      </div>
+      <div class="form-group"><label class="form-label">Review (max 500 chars)</label>
+        <textarea class="form-control" rows="3" maxlength="500" placeholder="Share your experience..."></textarea></div>
+      <button type="submit" class="btn btn-primary btn-full">Submit Review →</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script src="js/dashboard.js"></script>
+<script>
+  // Show mobile ham on small screens
+  if (window.innerWidth <= 900) document.getElementById('mobile-ham').style.display = 'flex';
+  window.addEventListener('resize', () => {
+    const ham = document.getElementById('mobile-ham');
+    if (ham) ham.style.display = window.innerWidth <= 900 ? 'flex' : 'none';
+  });
+</script>
+</body>
+</html>
